@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10rem;
+        }
+
+        button {
+            margin: 1rem;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>Fortune Cookies!</title>
+</head>
+
+<body>
+    <h1>Fortune Cookies!</h1>
+    <div id="cookie"><i>Click below for a fortune cookie</i></div>
+    <button onclick="fetchCookie()">Fetch Cookie!</button>
+
+    <script type="text/javascript">
+        function fetchCookie() {
+            fetch('http://localhost:8080/cookies')
+                .then(resp => resp.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById('cookie').innerHTML = data;
+                });
+        }
+    </script>
+</body>
+
+</html>
