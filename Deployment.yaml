@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  fortune
+  labels:
+    app:  fortune
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: fortune
+  template:
+    metadata:
+      labels:
+        app:  fortune
+    spec:
+      containers:
+      - image:  alexanderrasmussen/dps-fortune:1
+        name:  fortune
+        resources:
+          requests:
+            cpu: "10m"
+            memory: "20M"
+          limits:
+            cpu: "10m"
+            memory: "40M"
+        ports:
+        - containerPort:  8080
+          name:  fortune
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fortune-service
+spec:
+  selector:
+    app: fortune
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
