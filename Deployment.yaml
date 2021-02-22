@@ -5,7 +5,7 @@ metadata:
   labels:
     app:  fortune
 spec:
-  replicas: 5
+  replicas: 10 # Varies between 2/5/10
   selector:
     matchLabels:
       app: fortune
@@ -16,14 +16,15 @@ spec:
     spec:
       containers:
       - image:  alexanderrasmussen/dps-fortune:1
+        imagePullPolicy: IfNotPresent 
         name:  fortune
-        resources:
-          requests:
-            cpu: "10m"
-            memory: "20M"
+        resources: # Varies
+          requests: 
+            cpu: "100m" 
+            memory: "100M"
           limits:
-            cpu: "10m"
-            memory: "40M"
+            cpu: "200m"
+            memory: "200M"
         ports:
         - containerPort:  8080
           name:  fortune

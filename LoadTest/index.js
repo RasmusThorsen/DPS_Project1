@@ -20,21 +20,22 @@ axios.interceptors.response.use(function (response) {
   return Promise.reject(error);
 });
 
+
 let requestTime = 0
-for(let i = 0; i < 1000; i++)
+let numberOfRequests = 1000
+for(let i = 0; i < numberOfRequests; i++)
 {
   axios(config)
   .then(function (response) {
-    // console.log(JSON.stringify(response.config.timeData.endTime - response.config.timeData.startTime));
     requestTime += response.config.timeData.endTime - response.config.timeData.startTime 
-    if(i == 999) {
-      console.log(requestTime/1000)
+
+    if(i === numberOfRequests -1) {
+      console.log(requestTime/numberOfRequests)
     }
   })
   .catch(function (error) {
     console.log(error);
   });
 }
-
 
 
