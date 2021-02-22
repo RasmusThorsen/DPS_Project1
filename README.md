@@ -1,6 +1,6 @@
 # DPS_Project1
 
-# Installing Promethues
+# Installing Prometheus
 Down below is the commands used for installing promethues operator in the Local Docker for Desktop Kubernetes Cluster
 
 Download the helm for your OS from here: [Helm download](https://github.com/helm/helm/releases)
